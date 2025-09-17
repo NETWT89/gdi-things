@@ -1,2 +1,1 @@
-# gdi-things
-idk
+This is where GDI effects i use go (GDI Shaders etc)
