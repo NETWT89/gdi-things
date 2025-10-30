@@ -1,3 +1,5 @@
+// Edit : Remove the Hotkey.
+
 #include <windows.h>
 #include <vector>
 #include <cstdlib>
@@ -125,4 +127,5 @@ int WINAPI WinMain(HINSTANCE,HINSTANCE,LPSTR,int)
     DeleteDC(hdcCap); DeleteDC(hdcBack); DeleteDC(hdcScreen);
     UnregisterHotKey(NULL, HOTKEY_ID);
     return 0;
+
 }
