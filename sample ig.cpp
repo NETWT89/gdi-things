@@ -10,12 +10,10 @@
 #pragma comment(lib, "user32.lib")
 
 static volatile LONG g_running = 1;
-#define HOTKEY_ID 1
 
 struct IconSprite { HICON icon; float x,y,vx,vy; int life,maxlife; int w,h; };
 int WINAPI WinMain(HINSTANCE,HINSTANCE,LPSTR,int)
 {
-    RegisterHotKey(NULL, HOTKEY_ID, MOD_CONTROL | MOD_SHIFT, 0x51);
     std::srand((unsigned)std::time(NULL));
     int W = GetSystemMetrics(SM_CXSCREEN);
     int H = GetSystemMetrics(SM_CYSCREEN);
@@ -125,7 +123,7 @@ int WINAPI WinMain(HINSTANCE,HINSTANCE,LPSTR,int)
     SelectObject(hdcBack, oldBack);
     DeleteObject(hbCap); DeleteObject(hbBack);
     DeleteDC(hdcCap); DeleteDC(hdcBack); DeleteDC(hdcScreen);
-    UnregisterHotKey(NULL, HOTKEY_ID);
     return 0;
 
 }
+
