@@ -109,13 +109,10 @@ int WINAPI WinMain(HINSTANCE,HINSTANCE,LPSTR,int)
         bmi.bmiHeader.biWidth = W; bmi.bmiHeader.biHeight = H; bmi.bmiHeader.biPlanes = 1; bmi.bmiHeader.biBitCount = 32; bmi.bmiHeader.biCompression = BI_RGB;
         StretchDIBits(hdcBack, 0,0,W,H,0,0,W,H, pixels.data(), &bmi, DIB_RGB_COLORS, SRCPAINT);
         BitBlt(hdcScreen, 0, 0, W, H, hdcBack, 0, 0, SRCCOPY);
-        MSG msg;
-        while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
-            if (msg.message == WM_HOTKEY && msg.wParam == HOTKEY_ID) { InterlockedExchange(&g_running, 0); break; }
-            TranslateMessage(&msg); DispatchMessage(&msg);
-        }
-        Sleep(1);
+sleep (1);
+ 
     }
+        
     for (auto &ic : icons) DestroyIcon(ic.icon);
     for (auto h : preload) { }
     SelectObject(hdcCap, oldCap);
@@ -125,5 +122,6 @@ int WINAPI WinMain(HINSTANCE,HINSTANCE,LPSTR,int)
     return 0;
 
 }
+
 
 
