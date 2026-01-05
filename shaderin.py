@@ -8,7 +8,7 @@ user32 = ctypes.WinDLL('user32', use_last_error=True)
 gdi32 = ctypes.WinDLL('gdi32', use_last_error=True)
 msimg32 = ctypes.WinDLL('msimg32', use_last_error=True)
 
-# Constants
+
 SM_CXSCREEN = 0
 SM_CYSCREEN = 1
 BI_RGB = 0
@@ -16,7 +16,7 @@ DIB_RGB_COLORS = 0
 AC_SRC_OVER = 0x00
 AC_SRC_ALPHA = 0x01
 
-# Structures
+
 class BITMAPINFOHEADER(ctypes.Structure):
     _fields_ = [
         ('biSize', wintypes.DWORD),
@@ -46,7 +46,7 @@ class BLENDFUNCTION(ctypes.Structure):
         ('AlphaFormat', wintypes.BYTE),
     ]
 
-# Function prototypes
+
 user32.GetSystemMetrics.restype = ctypes.c_int
 user32.GetDC.argtypes = [wintypes.HWND]
 user32.GetDC.restype = wintypes.HDC
@@ -72,7 +72,7 @@ msimg32.AlphaBlend.argtypes = [wintypes.HDC, ctypes.c_int, ctypes.c_int, ctypes.
                               BLENDFUNCTION]
 msimg32.AlphaBlend.restype = wintypes.BOOL
 
-# Globals
+
 g_running = ctypes.c_long(1)
 
 def main():
@@ -88,7 +88,7 @@ def main():
     ctypes.memset(ctypes.byref(bmi), 0, ctypes.sizeof(bmi))
     bmi.bmiHeader.biSize = ctypes.sizeof(BITMAPINFOHEADER)
     bmi.bmiHeader.biWidth = W
-    bmi.bmiHeader.biHeight = -H  # top-down
+    bmi.bmiHeader.biHeight = -H  
     bmi.bmiHeader.biPlanes = 1
     bmi.bmiHeader.biBitCount = 32
     bmi.bmiHeader.biCompression = BI_RGB
@@ -104,7 +104,7 @@ def main():
 
     old = gdi32.SelectObject(hdcMem, hb)
 
-    # Fill pixels
+   
     pixel_array = (ctypes.c_uint32 * (W * H)).from_address(pBits.value)
     for y in range(H):
         fy = y / float(H)
@@ -123,7 +123,7 @@ def main():
     bf.SourceConstantAlpha = 255
     bf.AlphaFormat = AC_SRC_ALPHA
 
-    # Message loop simulation
+    
     while g_running.value == 1:
         hdcDesktop = user32.GetDC(None)
         msimg32.AlphaBlend(hdcDesktop, 0, 0, W, H, hdcMem, 0, 0, W, H, bf)
