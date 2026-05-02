@@ -1,3 +1,4 @@
+//trash code i made when i was new
 using System;
 using System.Drawing;
 
