@@ -1,3 +1,4 @@
+// some bad code i made.
 use std::ptr::null_mut;
 use winapi::shared::minwindef::{BOOL, HBITMAP, HDC, INT};
 use winapi::um::wingdi::{
@@ -10,7 +11,7 @@ const SCREEN_W: i32 = 800;
 const SCREEN_H: i32 = 600;
 const PAYLOAD3_DURATION: f32 = 4000.0;
 
-fn sigmaalphaeffect(dc: HDC, elapsed: u32) {
+fn effect(dc: HDC, elapsed: u32) {
     let progress = elapsed as f32 / PHASE3_DURATION;
 
     let move_x = (-200.0 * progress) as i32;
